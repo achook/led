@@ -7,38 +7,38 @@
 #include "pwm.h"
 
 void blink (color_t color) {
-	static bool rising = true;
-	static int16_t duty_cycle = 0;
+    static bool rising = true;
+    static int16_t duty_cycle = 0;
     color_t output;
-	
-	output.red = (uint16_t)color.red * duty_cycle / 255;
-	output.green = (uint16_t)color.green * duty_cycle / 255;
-	output.blue = (uint16_t)color.blue * duty_cycle / 255;
+    
+    output.red = (uint16_t)color.red * duty_cycle / 255;
+    output.green = (uint16_t)color.green * duty_cycle / 255;
+    output.blue = (uint16_t)color.blue * duty_cycle / 255;
 
-	set_all_PWM(output);
+    set_all_PWM(output);
 
-	if (rising) duty_cycle++;
-	else duty_cycle--;
+    if (rising) duty_cycle++;
+    else duty_cycle--;
 
-	if (duty_cycle == 255 || !duty_cycle) rising = !rising;
+    if (duty_cycle == 255 || !duty_cycle) rising = !rising;
 }
 
 void cycle_blink (color_t colors[], uint8_t len) {
-	static bool rising = true;
+    static bool rising = true;
     color_t output;
     static uint8_t duty_cycle = 0;
     static uint8_t i = 0;
 
     if (i >= len) i = 0;
-	
-	output.red = (uint16_t)colors[i].red * duty_cycle / 255;
-	output.green = (uint16_t)colors[i].green * duty_cycle / 255;
-	output.blue = (uint16_t)colors[i].blue * duty_cycle / 255;
+    
+    output.red = (uint16_t)colors[i].red * duty_cycle / 255;
+    output.green = (uint16_t)colors[i].green * duty_cycle / 255;
+    output.blue = (uint16_t)colors[i].blue * duty_cycle / 255;
 
-	set_all_PWM(output);
+    set_all_PWM(output);
 
-	if (rising) duty_cycle++;
-	else duty_cycle--;
+    if (rising) duty_cycle++;
+    else duty_cycle--;
 
     if (duty_cycle == 255) {
         rising = 0;

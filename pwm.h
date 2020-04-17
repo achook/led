@@ -22,18 +22,18 @@ void set_PWM(channel_t channel, uint8_t duty_cycle) {
         break;
 
         case GREEN:
-		OCR0B = 255-duty_cycle;
-		break;
+        OCR0B = 255-duty_cycle;
+        break;
 
-		case BLUE:
-		OCR1B = 255-duty_cycle;
-		break;
+        case BLUE:
+        OCR1B = 255-duty_cycle;
+        break;
 
     }
 }
 
 void set_all_PWM(color_t color) {
-	set_PWM(RED, color.red);
+    set_PWM(RED, color.red);
     set_PWM(GREEN, color.green);
     set_PWM(BLUE, color.blue);
 }
